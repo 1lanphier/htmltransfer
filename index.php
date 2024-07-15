@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
         <div class="container"> 
             <header>
                 <div>
-                    <img src="images/tenaxglitch.png" class="mx-auto d-block" style="max-width: 40%; height: auto; padding-top: 25px;"/>
+                    <img src="tenaxglitch.png" class="mx-auto d-block" style="max-width: 40%; height: auto; padding-top: 25px;"/>
                 </div>
                 <div class="type-div mx-auto d-block">
                     <p class="typed">SH0W N0 M3RCY</p>
