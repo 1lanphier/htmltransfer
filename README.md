@@ -7,6 +7,6 @@ PHP web files for easy hosting and transferring of files from target machines du
     sudo bash htmltransfer/setup.sh
     sudo systemctl start apache2
 
-navigate to http://127.0.0.1/htmltransfer/index.php to upload, or from a local machine at http://<IP ADDRESS>/htmltransfer/index.php
+navigate to http://127.0.0.1/htmltransfer/index.php to upload, or from a local machine at http://<IP_ADDRESS>/htmltransfer/index.php
 
     
