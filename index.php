@@ -1,32 +1,26 @@
 <?php
-// Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["file"])) {
-    
-    // File details
-    $file_name = $_FILES["file"]["name"];
-    $file_tmp = $_FILES["file"]["tmp_name"];
-    $file_size = $_FILES["file"]["size"];
-    $file_error = $_FILES["file"]["error"];
-    
-    // Target directory
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["files"])) {
     $target_dir = "uploads/";
-    $target_file = $target_dir . basename($file_name);
-    
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "<div class='alert alert-warning' style='margin-bottom: -5px'>Warning: File already exists. </div>";
-    } else {
-        // Check file size (optional)
-        // if ($file_size > 500000) {
-        //     echo "Sorry, your file is too large.";
-        // } else {
-            // Upload file
+
+    // Ensure the target directory exists
+    if (!is_dir($target_dir)) {
+        mkdir($target_dir, 0755, true);
+    }
+
+    foreach ($_FILES["files"]["name"] as $key => $file_name) {
+        $file_tmp = $_FILES["files"]["tmp_name"][$key];
+        $file_size = $_FILES["files"]["size"][$key];
+        $file_error = $_FILES["files"]["error"][$key];
+
+        if ($file_error === UPLOAD_ERR_OK) {
             if (move_uploaded_file($file_tmp, $target_file)) {
-                echo "<div class='alert alert-success' style='margin-bottom: -5px'> Success: ". htmlspecialchars(basename($file_name)). " has been uploaded. </div>";
+                echo "<div class='alert alert-success'>Success: " . htmlspecialchars($file_name) . " uploaded.</div>";
             } else {
-                echo "<div class='alert alert-danger' style='margin-bottom: -5px'> Error: An error occured while uploading the file. </div>";
+                echo "<div class='alert alert-danger'>Error: Failed to upload " . htmlspecialchars($file_name) . ".</div>";
             }
-        // }
+        } else {
+            echo "<div class='alert alert-danger'>Error: Upload failed for " . htmlspecialchars($file_name) . ".</div>";
+        }
     }
 }
 ?>
