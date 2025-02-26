@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["files"])) {
                     <div class="col-md-6">
                     
                          <div class="input-group mb-3">
-                    	   <input type="file" name="file" id="file" class="form-control" multiple webkitdirectory>
+                    	   <input type="file" name="files[]" id="file" class="form-control" multiple webkitdirectory>
                    	 </div>
                    	 <div class="text-center">
                     	<input type="submit" value="Upload File" name="submit" class="btn btn-secondary">
