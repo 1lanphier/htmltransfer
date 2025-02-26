@@ -51,16 +51,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Upload Files and Folders</title>
+    <title>HTTP FILE EXFILTRATOR</title>
+    <link rel="icon" type="image/x-icon" href="https://www.google.com/favicon.ico">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+        .text-padding {
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
-        .container {
-            max-width: 600px;
+
+        .type-div {
+            display: grid;
+            font-family: "Courier New";
+            place-items: center;
+            width: 195px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .typed {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            width: 0;
+            animation: typing 1.5s steps(15, end) forwards, blinking 1s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blinking {
+            0% {border-right-color: transparent}
+            50% {border-right-color: white}
+            100%{border-right-color: transparent}
+        }
+
+        .container-box {
             background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
@@ -69,26 +100,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="text-center">Upload Files and Folders</h2>
-        <form action="" method="post" enctype="multipart/form-data">
-            <!-- File Upload -->
-            <div class="mb-3">
-                <label for="file_input" class="form-label">Select Files:</label>
-                <input type="file" name="files[]" id="file_input" class="form-control" multiple>
+    <div class="bg-dark" style="height: 100vh">
+        <div class="container"> 
+            <header>
+                <div>
+                    <img src="tenaxglitch.png" class="mx-auto d-block" style="max-width: 40%; height: auto; padding-top: 25px;"/>
+                </div>
+                <div class="type-div mx-auto d-block">
+                    <p class="typed">SH0W N0 M3RCY</p>
+                </div>
+            </header>
+            <div class="container bg-light rounded" style="height: auto; padding: 20px;">    
+                <h2 class="text-padding text-center" style="font-family: Courier New">HTTP FILE EXFILTRATOR</h2>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6">
+                                <!-- File Upload -->
+                                <div class="input-group mb-3">
+                                    <input type="file" name="files[]" id="file_input" class="form-control" multiple>
+                                </div>
+
+                                <!-- Folder Upload -->
+                                <div class="input-group mb-3">
+                                    <input type="file" id="folder_input" name="folder_files[]" class="form-control" multiple webkitdirectory directory>
+                                </div>
+
+                                <!-- Hidden input to store folder paths -->
+                                <input type="hidden" id="folder_paths" name="folder_paths">
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-secondary">Upload Files & Folders</button>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>   
+                </form>
             </div>
-
-            <!-- Folder Upload -->
-            <div class="mb-3">
-                <label for="folder_input" class="form-label">Select Folder:</label>
-                <input type="file" id="folder_input" name="folder_files[]" class="form-control" multiple webkitdirectory directory>
-            </div>
-
-            <!-- Hidden input to store folder paths -->
-            <input type="hidden" id="folder_paths" name="folder_paths">
-
-            <button type="submit" class="btn btn-primary w-100">Upload Files & Folders</button>
-        </form>
+        </div> 
     </div>
 
     <script>
